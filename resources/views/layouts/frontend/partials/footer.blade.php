@@ -13,7 +13,7 @@
                 <h5 class="white-text uppercase">Recent Properties</h5>
                 <ul class="collection border0">
 
-                    @foreach($footerproperties as $property)
+                    @foreach($errors as $property)
                     <li class="collection-item transparent clearfix p-0 border0">
                         <span class="card-image-bg m-r-10" style="background-image:url({{Storage::url('property/'.$property->image)}});width:60px;height:45px;float:left;"></span>
                         <div class="float-left">

@@ -4,21 +4,26 @@ namespace App\Http\Controllers\User;
 
 use App\User;
 use Carbon\Carbon;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use App\Repositories\CommentRepository;
+use App\Repositories\MessageRepository;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
     private $commentRepository;
+    private $messageRepository;
 
-    public function __construct(CommentRepository $commentRepository)
+    public function __construct(CommentRepository $commentRepository, MessageRepository $messageRepository)
     {
         $this->commentRepository = $commentRepository;
+        $this->messageRepository = $messageRepository;
     }
 
     public function index()
@@ -40,8 +45,8 @@ class DashboardController extends Controller
             'name'      => 'required',
             'username'  => 'required',
             'email'     => 'required|email',
-            'image'     => 'image|mimes:jpeg,jpg,png',
-            'about'     => 'max:250'
+            'image'     => 'sometimes|image|mimes:jpeg,jpg,png',
+            'about'     => 'sometimes|max:250'
         ]);
     }
 
@@ -114,5 +119,70 @@ class DashboardController extends Controller
 
         Toastr::success('message', 'Password changed successfully.');
         return redirect()->back();
+    }
+
+    public function message()
+    {
+        $messages = $this->messageRepository->getLatest(Auth::id(), 10);
+
+        return view('user.messages.index',compact('messages'));
+    }
+
+    public function messageRead($id)
+    {
+        $message = $this->messageRepository->getById($id);
+
+        return view('user.messages.read',compact('message'));
+    }
+
+    public function messageReplay($id)
+    {
+        $message = $this->messageRepository->getById($id);
+
+        return view('user.messages.replay',compact('message'));
+    }
+
+    public function messageSend(Request $request)
+    {
+        $request->validate([
+            'agent_id'  => 'required',
+            'user_id'   => 'required',
+            'name'      => 'required',
+            'email'     => 'required',
+            'phone'     => 'required',
+            'message'   => 'required'
+        ]);
+
+        Message::create($request->all());
+
+        Toastr::success('message', 'Message send successfully.');
+        return back();
+
+    }
+
+    public function messageReadUnread(Request $request)
+    {
+        $status = $request->status;
+        $msgid  = $request->messageid;
+
+        if($status){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+
+        $message = $this->messageRepository->getById($msgid);
+        $message->status = $status;
+        $message->save();
+
+        return redirect()->route('user.message');
+    }
+
+    public function messageDelete($id)
+    {
+        $this->messageRepository->destroy($id);
+
+        Toastr::success('message', 'Message deleted successfully.');
+        return back();
     }
 }

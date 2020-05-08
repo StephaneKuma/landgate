@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\User;
 use App\Models\Rating;
+use App\Models\Comment;
+use App\Models\Feature;
 use App\Models\PropertyImage;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,9 +34,14 @@ class Property extends Model
         'nearby'
     ];
 
-    public function agent()
+    public function features()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Feature::class)->withTimestamps();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'agent_id');
     }
 
     public function property_images()
@@ -42,8 +49,13 @@ class Property extends Model
         return $this->hasMany(PropertyImage::class);
     }
 
-    public function ratings()
+    public function rating()
     {
-        return $this->hasMany(Rating::class);
+        return $this->hasMany(Rating::class, 'property_id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

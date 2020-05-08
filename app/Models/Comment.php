@@ -8,16 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $fillable = [
+        'user_id',
         'body',
+        'parent',
+        'parent_id',
+        'approved',
         'commentable_id',
         'commentable_type',
-        'user_id',
-        'parent_id',
-        'approved'
     ];
 
-    public function user()
+    public function commentable()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
+    }
+
+    function users()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Comment', 'parent_id', 'id');
     }
 }

@@ -18,7 +18,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">notifications</i>
-                            <span class="label-count">{{ $countmessages }}</span>
+                            <span class="label-count">{{ $comments }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">MESSAGES</li>

@@ -27,15 +27,15 @@
     <body>
         
         {{-- MAIN NAVIGATION BAR --}}
-        @include('frontend.partials.navbar')
+        @include('layouts.frontend.partials.navbar')
 
         {{-- SLIDER SECTION --}}
         @if(Request::is('/'))
-            @include('frontend.partials.slider')
+            @include('layouts.frontend.partials.slider')
         @endif
 
         {{-- SEARCH BAR --}}
-        @include('frontend.partials.search')
+        @include('layouts.frontend.partials.search')
         
         {{-- MAIN CONTENT --}}
         <div class="main">
@@ -43,7 +43,7 @@
         </div>
 
         {{-- FOOTER --}}
-        @include('frontend.partials.footer')
+        @include('layouts.frontend.partials.footer')
 
 
         <!--JavaScript at end of body for optimized loading-->
@@ -80,7 +80,7 @@
                 indicators: true,
             });
 
-            var city_list =<?php echo json_encode($citylist);?>;
+            var city_list =<?php echo json_encode($citylist ?? '');?>;
             $('input.autocomplete').autocomplete({
                 data: city_list
             });

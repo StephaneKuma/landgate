@@ -73,11 +73,11 @@
 
         
         {{-- MAIN NAVIGATION BAR --}}
-        @include('backend.partials.navbar')
+        @include('layouts.backend.partials.navbar')
 
         {{-- SIDEBAR LEFT --}}
         <section>
-            @include('backend.partials.sidebar')
+            @include('layouts.backend.partials.sidebar')
         </section>
         
         {{-- MAIN CONTENT SECTION --}}

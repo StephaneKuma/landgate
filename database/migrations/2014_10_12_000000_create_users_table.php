@@ -22,10 +22,11 @@ class CreateUsersTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('name');
+            $table->string('username');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('image')->default('default.png');
-            $table->string('about');
+            $table->string('about')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
