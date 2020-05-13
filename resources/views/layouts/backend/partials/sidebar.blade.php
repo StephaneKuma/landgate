@@ -46,9 +46,10 @@
                 </li>
 
                 <li class="header">Blog</li>
+
                 <li class="{{ Request::is('admin/categories*') ? 'active' : '' }}">
                     <a href="{{ route('admin.categories.index') }}">
-                        <i class="material-icons">category</i>
+                        <i class="material-icons">description</i>
                         <span>Categories</span>
                     </a>
                 </li>

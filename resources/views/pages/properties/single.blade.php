@@ -322,7 +322,7 @@
                                                 @endif
                                                 <div class="card-stacked">
                                                     <div class="p-l-10 p-r-10 indigo-text">
-                                                        <h6 title="{{$property_related->title}}">{{ str_limit( $property_related->title, 18 ) }}</h6>
+                                                        <h6 title="{{$property_related->title}}">{{ Str::limit( $property_related->title, 18 ) }}</h6>
                                                         <strong>&dollar;{{$property_related->price}}</strong>
                                                     </div>
                                                 </div>

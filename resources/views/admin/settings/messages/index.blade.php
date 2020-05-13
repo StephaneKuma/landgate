@@ -40,7 +40,7 @@
                                     <td>{{$message->name}}</td>
                                     <td>{{$message->email}}</td>
                                     <td>{{$message->phone}}</td>
-                                    <td>{{ str_limit($message->message,40,'...') }}</td>
+                                    <td>{{ Str::limit($message->message,40,'...') }}</td>
                                     <td>
                                         @if($message->status == 0)
                                             <a href="{{route('admin.message.read',$message->id)}}" class="btn btn-warning btn-sm waves-effect">

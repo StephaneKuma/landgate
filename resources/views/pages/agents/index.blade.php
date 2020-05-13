@@ -21,7 +21,7 @@
                                 <a href="{{ route('agents.show',$agent->id) }}" class="truncate">{{ $agent->name }}</a>
                             </h5>
                             <h6 class="email">{{ $agent->email }}</h6>
-                            <p class="about">{{ str_limit($agent->about,50) }}</p>
+                            <p class="about">{{ Str::limit($agent->about,50) }}</p>
                         </div>
                     </div>
                 @endforeach

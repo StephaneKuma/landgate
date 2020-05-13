@@ -39,7 +39,7 @@
                                         <td>{{ $message->email }}</td>
                                         <td>
                                             <span class="tooltipped" data-position="bottom" data-tooltip="{{$message->message}}">
-                                                {{ str_limit($message->message,20) }}
+                                                {{ Str::limit($message->message,20) }}
                                             </span>
                                         </td>
                                         <td>

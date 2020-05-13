@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Agent;
 
+use App\User;
 use Carbon\Carbon;
 use App\Mail\Contact;
 use App\Models\Message;
 use App\Models\Property;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -35,7 +37,7 @@ class DashboardController extends Controller
         return view('agent.profile', compact('profile'));
     }
 
-    public function profileUpdate()
+    public function profileUpdate(Request $request)
     {
         $request->validate([
             'name'      => 'required',
@@ -48,7 +50,7 @@ class DashboardController extends Controller
         $user = User::find(Auth::id());
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();

@@ -39,7 +39,7 @@
                             <div class="card-stacked">
                                 <div class="p-20 property-content">
                                     <span class="card-title search-title" title="{{$property->title}}">
-                                        <a href="{{ route('property.show',$property->slug) }}">{{ str_limit($property->title,25) }}</a>
+                                        <a href="{{ route('property.show',$property->slug) }}">{{ Str::limit($property->title,25) }}</a>
                                     </span>
                                     <h5>
                                         &dollar;{{ $property->price }}

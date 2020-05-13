@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -45,7 +46,7 @@ class TagController extends Controller
 
         $tag = new Tag();
         $tag->name = $request->name;
-        $tag->slug = str_slug($request->name);
+        $tag->slug = Str::slug($request->name);
         $tag->save();
 
         Toastr::success('message', 'Tag created successfully.');
@@ -91,7 +92,7 @@ class TagController extends Controller
 
         $tag = Tag::find($id);
         $tag->name = $request->name;
-        $tag->slug = str_slug($request->name);
+        $tag->slug = Str::slug($request->name);
         $tag->save();
 
         Toastr::success('message', 'Tag updated successfully.');

@@ -48,7 +48,7 @@
                             </div>
                             <div class="card-content property-content">
                                 <a href="{{ route('property.show',$property->slug) }}">
-                                    <span class="card-title tooltipped" data-position="bottom" data-tooltip="{{ $property->title }}">{{ str_limit( $property->title, 18 ) }}</span>
+                                    <span class="card-title tooltipped" data-position="bottom" data-tooltip="{{ $property->title }}">{{ Str::limit( $property->title, 18 ) }}</span>
                                 </a>
 
                                 <div class="address">
@@ -148,9 +148,9 @@
                         </div>
                         <div class="card-content">
                             <span class="card-title tooltipped" data-position="bottom" data-tooltip="{{$post->title}}">
-                                <a href="{{ route('blog.show',$post->slug) }}">{{ str_limit($post->title,18) }}</a>
+                                <a href="{{ route('blog.show',$post->slug) }}">{{ Str::limit($post->title,18) }}</a>
                             </span>
-                            {!! str_limit($post->body,120) !!}
+                            {!! Str::limit($post->body,120) !!}
                         </div>
                         <div class="card-action blog-action">
                             <a href="{{ route('blog.author',$post->user->username) }}" class="btn-flat">

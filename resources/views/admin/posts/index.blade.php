@@ -53,7 +53,7 @@
                                     </td>
                                     <td>
                                         <span title="{{$post->title}}">
-                                            {{ str_limit($post->title,10) }}
+                                            {{ Str::limit($post->title,10) }}
                                         </span>
                                     </td>
                                     <td>{{$post->user->name}}</td>

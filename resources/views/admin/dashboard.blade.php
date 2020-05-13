@@ -88,7 +88,7 @@
                                     <td>{{ ++$key }}.</td>
                                     <td>
                                         <span title="{{ $property->title }}">
-                                            {{ str_limit($property->title, 10) }}
+                                            {{ Str::limit($property->title, 10) }}
                                         </span>
                                     </td>
                                     <td>&dollar;{{ $property->price }}</td>
@@ -132,7 +132,7 @@
                                     <td>{{ ++$key }}.</td>
                                     <td>
                                         <span title="{{ $post->title }}">
-                                            {{ str_limit($post->title, 30) }}
+                                            {{ Str::limit($post->title, 30) }}
                                         </span>
                                     </td>
                                     <td>
@@ -209,7 +209,7 @@
                                     <td>{{ ++$key }}.</td>
                                     <td>
                                         <span title="{{ $comment->body }}">
-                                            {{ str_limit($comment->body, 10) }}
+                                            {{ Str::limit($comment->body, 10) }}
                                         </span>
                                     </td>
                                     <td>

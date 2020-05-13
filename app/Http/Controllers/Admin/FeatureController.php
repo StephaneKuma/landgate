@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Feature;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -45,7 +46,7 @@ class FeatureController extends Controller
 
         $tag = new Feature();
         $tag->name = $request->name;
-        $tag->slug = str_slug($request->name);
+        $tag->slug = Str::slug($request->name);
         $tag->save();
 
         Toastr::success('message', 'Feature created successfully.');
@@ -91,7 +92,7 @@ class FeatureController extends Controller
 
         $feature = Feature::find($id);
         $feature->name = $request->name;
-        $feature->slug = str_slug($request->name);
+        $feature->slug = Str::slug($request->name);
         $feature->save();
 
         Toastr::success('message', 'Feature updated successfully.');

@@ -54,7 +54,7 @@
                                     </td>
                                     <td>
                                         <span title="{{$property->title}}">
-                                            {{ str_limit($property->title,10) }}
+                                            {{ Str::limit($property->title,10) }}
                                         </span>
                                     </td>
                                     <td>{{$property->user->name}}</td>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -48,7 +49,7 @@ class CategoryController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
@@ -119,7 +120,7 @@ class CategoryController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
         $category = Category::find($id);
 
         if(isset($image)){

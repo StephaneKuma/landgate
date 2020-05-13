@@ -18,7 +18,7 @@
                         <span class="card-image-bg m-r-10" style="background-image:url({{Storage::url('property/'.$property->image)}});width:60px;height:45px;float:left;"></span>
                         <div class="float-left">
                             <h5 class="font-18 m-b-0 m-t-5">
-                                <a href="{{ route('property.show',$property->slug) }}" class="white-text">{{ str_limit($property->title,40) }}</a>
+                                <a href="{{ route('property.show',$property->slug) }}" class="white-text">{{ Str::limit($property->title,40) }}</a>
                             </h5>
                             <p class="m-t-0 m-b-5 grey-text text-lighten-1">Bedroom: {{ $property->bedroom }} Bathroom: {{ $property->bathroom }} </p>
                         </div>

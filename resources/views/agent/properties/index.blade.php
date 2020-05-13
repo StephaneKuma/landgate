@@ -39,7 +39,7 @@
                                         <td class="right-align">{{$key+1}}.</td>
                                         <td>
                                             <span class="tooltipped" data-position="bottom" data-tooltip="{{$property->title}}">
-                                                {{ str_limit($property->title,30) }}
+                                                {{ Str::limit($property->title,30) }}
                                             </span>
                                         </td>
                                         

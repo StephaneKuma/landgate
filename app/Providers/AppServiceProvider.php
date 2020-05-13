@@ -9,6 +9,7 @@ use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //
     }
     
     /**
@@ -29,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+        
         if (! $this->app->runningInConsole()) {
     
             // SHARE TO ALL ROUTES
@@ -48,16 +52,16 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('bathroomdistinct', Property::select('bathroom')->distinct()->get());
             });
     
-            view()->composer('frontend.partials.footer', function($view) {
+            view()->composer('layouts.frontend.partials.footer', function($view) {
                 $view->with('footerproperties', Property::latest()->take(3)->get());
-                $view->with('footersettings', Setting::select('footer','aboutus','facebook','twitter','linkedin')->get());
+                $view->with('footersettings', Setting::select('footer','about_us','facebook','twitter','linkedin')->get());
             });
     
-            view()->composer('frontend.partials.navbar', function($view) {
+            view()->composer('layouts.frontend.partials.navbar', function($view) {
                 $view->with('navbarsettings', Setting::select('name')->get());
             });
     
-            view()->composer('backend.partials.navbar', function($view) {
+            view()->composer('layouts.backend.partials.navbar', function($view) {
                 $view->with('countmessages', Message::latest()->where('agent_id', Auth::id())->count());
                 $view->with('navbarmessages', Message::latest()->where('agent_id', Auth::id())->take(5)->get());
             });

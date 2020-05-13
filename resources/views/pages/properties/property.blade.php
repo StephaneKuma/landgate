@@ -44,7 +44,7 @@
                             </div>
                             <div class="card-content property-content">
                                 <a href="{{ route('property.show',$property->slug) }}">
-                                    <span class="card-title tooltipped" data-position="bottom" data-tooltip="{{ $property->title }}">{{ str_limit( $property->title, 18 ) }}</span>
+                                    <span class="card-title tooltipped" data-position="bottom" data-tooltip="{{ $property->title }}">{{ Str::limit( $property->title, 18 ) }}</span>
                                 </a>
 
                                 <div class="address">

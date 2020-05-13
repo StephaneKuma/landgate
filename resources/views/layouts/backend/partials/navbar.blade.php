@@ -18,7 +18,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">notifications</i>
-                            <span class="label-count">{{ $comments }}</span>
+                            <span class="label-count">{{ $countmessages }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">MESSAGES</li>
@@ -31,10 +31,10 @@
                                                 <i class="material-icons">message</i>
                                             </div>
                                             <div class="menu-info">
-                                                <h4>{{ str_limit($message->message,30) }}</h4>
+                                                <h4>{!! Str::limit($message->message,30) !!}</h4>
                                                 <p>
                                                     <i class="material-icons">access_time</i>
-                                                    {{ $message->created_at->diffForHumans() }}
+                                                    {{ \Carbon\Carbon::parse($message->created_at)->diffForHumans() }}
                                                 </p>
                                             </div>
                                         </a>

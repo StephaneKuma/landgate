@@ -27,7 +27,7 @@
                                     <span class="card-title">
                                         <a href="{{ route('blog.show',$post->slug) }}">{{ $post->title }}</a>
                                     </span>
-                                    {!! str_limit($post->body,120) !!}
+                                    {!! Str::limit($post->body,120) !!}
                                 </div>
                                 <div class="card-action blog-action clearfix">
                                     <a href="{{ route('blog.author',$post->user->username) }}" class="btn-flat">

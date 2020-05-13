@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Models\Testimonial;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
@@ -49,7 +50,7 @@ class TestimonialController extends Controller
         ]);
 
         $image = $request->file('image');
-        $slug  = str_slug($request->name);
+        $slug  = Str::slug($request->name);
 
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
@@ -114,7 +115,7 @@ class TestimonialController extends Controller
         ]);
 
         $image = $request->file('image'); 
-        $slug  = str_slug($request->title);
+        $slug  = Str::slug($request->title);
         $testimonial = Testimonial::find($id);
 
         if(isset($image)){
